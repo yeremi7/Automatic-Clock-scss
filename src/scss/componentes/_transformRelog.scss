@@ -1,0 +1,96 @@
+body{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: hsl(120, 18%, 10%);
+    overflow: hidden;
+}
+.relog{
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(#666,hsl(120, 10%, 10%));
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 5px 5px 5px hsl(360, 0%, 65%);
+}
+.hour{
+    position: absolute;
+    width: 2em;
+    height: 1em;
+    left: calc(50% - 1em);
+    color: white;
+    text-shadow: 1px 1px 5px rgba(0,0,0,.5);
+    top: 1em;
+    transform-origin: center calc(250px - 1em);
+
+    span{
+        display: block;
+        width: 2em;
+        height: 1em;
+        text-align: center;
+    }
+}
+
+@for $i from 1 through 12 {
+    .hour:nth-child(#{$i}){
+        transform: rotate(#{$i * 30}deg);
+
+        span{
+            transform: rotate(-#{$i * 30}deg);
+        }
+    }
+}
+
+.aguja{
+    width: 2px;
+    height:  calc(250px - 3em);
+    position: absolute;
+    background-color: white;
+    left: 50%;
+    top: 3em;
+    transform-origin: center bottom;
+
+    &.segundos{
+        animation: segundos 60s infinite steps(60);
+        background-color: rgb(41, 41, 121);
+
+
+        @keyframes segundos {
+            to{
+                transform: rotate(360deg);
+            }
+        }
+    }
+    &.minutos{
+        animation: minutos 3600s infinite steps(60);
+        background-color: rgb(128, 34, 34);
+
+        @keyframes minutos {
+            to{
+                transform: rotate(360deg);
+            }
+        }
+    }
+    &.horas{
+        animation: horas 43200s infinite steps(12);
+        background-color: rgb(165, 165, 35);
+
+        @keyframes horas {
+            to{
+                transform: rotate(360deg);
+            }
+        }
+    }
+}
+
+.circle{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(0,0,0,.5);
+    background-color: hsl(360, 0%, 90%);
+    position: absolute;
+    left: calc(50% - 5px);
+    top: calc(50% - 5px);
+}
